@@ -1,4 +1,4 @@
-# //Funciones
+# // Funciones
 # Programa que muestra un menú de opciones y funciones
 # Autor: Antonio Benítez Rodríguez
 # Fecha: 30/09/2025
@@ -169,15 +169,111 @@ def contrasenaValida(s: str) -> bool:
     if(hayMayus and hayMinus and haySimbolo and sinEspacio and len(s) > 8):
         esValida = True
     return esValida
+
 # EJERCICIO 10. Normaliza nombres
-def normalizaNombre(cadena:str) -> str:
+def normalizaNombre(cadena:str) -> str: 
     resultado = ""
     palabras = cadena.split()
     pos = 0
     for str in palabras:
-        for char in str:
-    print(palabras)
+        pos = 0
+        for c in str:
+            if(pos == 0):
+                resultado += c.upper()
+            else:
+                resultado += c.lower()
+            pos += 1
+        resultado += " "
     return resultado
+
+# EJERCICIO 11. Contador de dígitos pares e impares
+def contarParesImpares(n:int) -> tuple[int,int]:
+    numero = n
+    pares = 0
+    impares = 0
+    while numero > 0:
+        digito = numero % 10
+        if(digito % 2 == 0):
+            pares += 1
+        else:
+            impares += 1
+        numero //= 10
+    contador = (pares,impares)
+    return contador
+
+# EJERCICIO 12. Repetición controlada de texto
+def repetirPalabra(palabra: str, n: int) -> str:
+    resultado = ""
+    for i in range(n):
+        resultado += palabra
+        if(i != n - 1):
+            resultado += "-"
+    return resultado
+
+# EJERCICIO 13. Contar vocales y consonantes (sin listas)
+def contarVocalesConsonantes(s:str) -> tuple[int,int]:
+    numVocales = 0
+    consonantes = 0
+    vocales = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
+    for c in s:
+        if c.isalpha():
+            if c in vocales:
+                numVocales += 1
+            else:
+                consonantes += 1
+    contador = (numVocales,consonantes)
+    return contador
+
+# EJERCICIO 14. Conversión de segundos a formato h:m:s
+def convertirTiempo(segundos: int) -> str:
+    hrs = segundos // 3600
+    scs = segundos % 3600
+    mins = segundos // 60
+    scs = segundos % 60
+    cadena = f'{hrs}:{mins}:{scs}'
+    return cadena
+
+# EJERCICIO 15. Calculadora de potencias con menú
+def calcularPotencia(base,exp):
+    resultado = base
+    for i in range(exp-1):
+        resultado = resultado * base
+    return resultado
+
+# EJERCICIO 16. Inversión de cadena (sin usar slicing inverso)
+def invertirCadena(s: str) -> str:
+    resultado = ""
+    for c in s:
+        resultado = c + resultado
+    return resultado
+
+# EJERCICIO 17. Contador de caracteres específicos
+def contarCaracter(s:str, c:str) -> int:
+    resultado = 0
+    for char in s:
+        if(char == c):
+            resultado += 1
+    return resultado
+
+# EJERCICIO 18. Detección de número capicúa
+def esCapicua(n:int) -> bool:
+    esCapicua = False
+    cadena = str(n)
+    temp1, temp2 = cadena[:len(cadena)//2], cadena[len(cadena)//2:]
+    if(len(temp1) != len(temp2)):
+        temp2 = temp2[1:]
+    if(temp1 == invertirCadena(temp2)):
+        esCapicua = True
+    return esCapicua
+
+# EJERCICIO 19. Convertidor de mayúsculas/minúsculas
+def convertirMayus(cadena: str) -> str:
+    return cadena.upper()
+def convertirMinus(cadena: str) -> str:
+    return cadena.lower()
+def capitalizar(cadena: str) -> str:
+    return cadena.capitalize()
+
 #PROGRAMA =========================================================================
 respuesta = ""
 while(respuesta != 20):
@@ -189,18 +285,18 @@ while(respuesta != 20):
           +"\n5) Ejercicio 5 - Números primos"
           +"\n6) Ejercicio 6 - Conversor de temperaturas"
           +"\n7) Ejercicio 7 - Figuras con astericos"
-          +"\n8)"
-          +"\n9)"
-          +"\n10)"
-          +"\n11)"
-          +"\n12)"
-          +"\n13)"
-          +"\n14)"
-          +"\n15)"
-          +"\n16)"
-          +"\n17)"
-          +"\n18)"
-          +"\n19)"
+          +"\n8) Ejercicio 8 - Tabla de Multiplicar Extendida"
+          +"\n9) Ejercicio 9 - Validación de contraseña"
+          +"\n10) Ejercicio 10 - Normaliza nombres (cadenas)"
+          +"\n11) Ejercicio 11 - Contador de dígitos pares e impares"
+          +"\n12) Ejercicio 12 - Repetición controlada de texto"
+          +"\n13) Ejercicio 13 - Contar vocales y consonantes (sin listas)"
+          +"\n14) Ejercicio 14 - Conversión de segundos a formato h:m:s"
+          +"\n15) Ejercicio 15 - Calculadora de potencias con menú"
+          +"\n16) Ejercicio 16 - Inversión de cadena (sin usar slicing inverso)"
+          +"\n17) Ejercicio 17 - Contador de caracteres específicos"
+          +"\n18) Ejercicio 18 - Detección de número capicúa"
+          +"\n19) Ejercicio 19 - Convertidor de mayúsculas/minúsculas"
           +"\n20) Salir del programa");
     respuesta = numCheck("Introduzca la opción a elegir.")
     match(respuesta):
@@ -320,23 +416,99 @@ while(respuesta != 20):
             else:
                 print("Cadena introducida:",cadena,"\nCadena normalizada:",normalizado)
         case(11): # EJERCICIO 11 ---------------------------------------------------------
-            print("LOL")
+            contador = contarParesImpares(numCheck("Introduzca un número."))
+            print("Pares:",contador[0],"Impares:",contador[1])
         case(12): # EJERCICIO 12 ---------------------------------------------------------
-            print("LOL")
+            print("Introduza una cadena de texto a repetir.")
+            cadena = input("Cadena: ")
+            num = numCheck("Introduzca cuantas veces quiere repetir la cadena.")
+            print("Cadena repetida",num,"veces:",repetirPalabra(cadena,num))
         case(13): # EJERCICIO 13 ---------------------------------------------------------
-            print("LOL")
+            print("Introduzca una cadena de texto.")
+            cadena = input("Cadena: ")
+            contador = contarVocalesConsonantes(cadena)
+            print("Vocales:",contador[0],"Consonantes:",contador[1])
         case(14): # EJERCICIO 14 ---------------------------------------------------------
-            print("LOL")
+            num = numCheck("Introduzca el tiempo en segundos.")
+            print(num,"segundos en h:m:s =",convertirTiempo(num))
         case(15): # EJERCICIO 15 ---------------------------------------------------------
-            print("LOL")
+            chosen = False
+            while(chosen is False):
+                print("¿Que potencia desea calcular?"
+                      +"\na) Cuadrado"
+                      +"\nb) Cubo"
+                      +"\nc) Potencia"
+                      +"\nd) Cancelar")
+                respuesta = input("Opción: ")
+                match(respuesta):
+                    case("a"):
+                        num = numCheck("Introduzca el número a calcular.")
+                        print(f'Potencia al cuadrado de {num} = {num*num}')
+                        chosen = True
+                    case("b"):
+                        num = numCheck("Introduzca el número a calcular.")
+                        print(f'Potencia al cubo de {num} = {num*num*num}')
+                        chosen = True
+                    case("c"):
+                        num = numCheck("Introduzca el número a calcular.")
+                        potencia = numCheck("Introduzca la potencia a calcular.")
+                        print(f'Resultado de {num} con potencia a {potencia} = {calcularPotencia(num,potencia)}')
+                        chosen = True
+                    case("d"):
+                        print("Cancelando operación ...")
+                        chosen = True
+                    case _:
+                        print("Opción introducida no válida, inténtelo de nuevo.")
         case(16): # EJERCICIO 16 ---------------------------------------------------------
-            print("LOL")
+            print("Introduzca una cadena de texto.")
+            cadena = input("Cadena: ")
+            print(f'Cadena inversa = {invertirCadena(cadena)}')
         case(17): # EJERCICIO 17 ---------------------------------------------------------
-            print("LOL")
+            print("Introduzca una cadena de texto.")
+            cadena = input("Cadena: ")
+            caracter = "aaaaa"
+            while(len(caracter) > 1 or len(caracter) <= 0):
+                print("Introduzca un carácter a buscar.")
+                caracter = input("Carácter: ")
+                if(len(caracter)>1 or len(caracter) <= 0):
+                    print("Debe introducir solo un caracter. Inténtelo de nuevo.")
+            print(f'El carácter "{caracter}" aparece {contarCaracter(cadena,caracter)} veces.')
         case(18): # EJERCICIO 18 ---------------------------------------------------------
-            print("LOL")
+            num = numCheck("Introduzca un número.")
+            if(esCapicua(num)):
+                print(f'El número {num} es capicúa.')
+            else:
+                print(f'El número {num} no es capicúa.')
         case(19): # EJERCICIO 19 ---------------------------------------------------------
-            print("LOL")
+            chosen = False
+            while(chosen is False):
+                print("¿Qué operación desea realizar?"
+                      +"\na) Convertir cadena a mayúsculas"
+                      +"\nb) Convertir cadena a minúsculas"
+                      +"\nc) Capitalizar cadena"
+                      +"\nd) Cancelar")
+                respuesta = input("Opción: ")
+                match(respuesta):
+                    case("a"):
+                        print("Introduzca una cadena de texto.")
+                        cadena = input("Cadena: ")
+                        print("Cadena convertida a mayúsculas =",convertirMayus(cadena))
+                        chosen = True
+                    case("b"):
+                        print("Introduzca una cadena de texto.")
+                        cadena = input("Cadena: ")
+                        print("Cadena convertida a minúsculas =",convertirMinus(cadena))
+                        chosen = True
+                    case("c"):
+                        print("Introduzca una cadena de texto.")
+                        cadena = input("Cadena: ")
+                        print("Cadena capitalizada =",capitalizar(cadena))
+                        chosen = True
+                    case("d"):
+                        print("Cancelando operación ...")
+                        chosen = True
+                    case _:
+                        print("Opción introducida no válida, inténtelo de nuevo.")
         case(20): # APAGAR PROGRAMA ----------------------------------------------------
             print("Apagando programa ...")
         case _: # ERROR ----------------------------------------------------------------
