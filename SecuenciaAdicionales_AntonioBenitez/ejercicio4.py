@@ -5,7 +5,7 @@
 
 #FUNCIONES =========================================================================
 
-def rotar(num:int,list:list) -> list:
+def rotar(num,list:list) -> list:
     rotados = list
     for i in range(num):
         temp = rotados[0]

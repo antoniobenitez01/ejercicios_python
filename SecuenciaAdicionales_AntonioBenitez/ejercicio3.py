@@ -5,7 +5,7 @@
 
 #FUNCIONES =========================================================================
 
-def suma(num1:int,num2:int): return num1 + num2
+def suma(num1,num2): return num1 + num2
 
 # NUM CHECK - Comprueba que el dato introducido por teclado es un número
 def numCheck(mensaje):
