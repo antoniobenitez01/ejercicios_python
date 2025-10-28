@@ -11,16 +11,16 @@ import re
 #FUNCIONES =========================================================================
 
 # NUM CHECK - Comprueba que el dato introducido por teclado es un número
-def numCheck(mensaje):
+def numCheck(mensaje:str) -> int:
     isNum = False
     while(isNum is False):
         try:
             print(mensaje)
-            num = int(input("Número: "))
+            num = int(input("Número:"))
             isNum = True
-            return num
         except ValueError:
             print("No se ha introducido un número, inténtelo de nuevo.")
+    return num
 
 # EJERCICIO 1. Par o Impar - Devuelve true si el número introducido por parámetro es par
 def esPar(n: int) -> bool:
