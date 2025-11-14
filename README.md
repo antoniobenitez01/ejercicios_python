@@ -145,9 +145,9 @@ ______________________________________________________________________________<b
       <table>
         <tr> <th colspan="3">Ejercicios de Diccionarios Adicionales</th> </tr>
         <tr> <th>Nº</th> <th>Descripción</th> <th></th> </tr>
-        <tr> <td>1</td> <td>Diccionario Datos</td>   <td>:x:</td> </tr>
-        <tr> <td>2</td> <td>Diccionario Datos 2</td>    <td>:x:</td> </tr>
-        <tr> <td>3</td> <td>Tienda El Gran Bazar</td>        <td>:x:</td> </tr>
+        <tr> <td>1</td> <td>Diccionario Datos</td> <td>:white_check_mark:</td> </tr>
+        <tr> <td>2</td> <td>Diccionario Datos 2</td> <td>:white_check_mark:</td> </tr>
+        <tr> <td>3</td> <td>Tienda El Gran Bazar</td> <td>:white_check_mark:</td> </tr>
       </table>
     </td>
   </table>
